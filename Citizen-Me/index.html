@@ -7,26 +7,23 @@
 		<script type="text/javascript" src="js/controllers.js"></script>
 	</head>
 	<body ng-controller="gameAreaCtrl">
-			<div id="header">
+			<div id="header" ng-mouseover="resetCursor()">
 			</div>
 			<div id="game">
-				<div class="coordinates">
-				
-				</div>
 				<!-- NEVER DELETE THIS COMMENT
-					
 					i = $parent.$index | $parent is needed to get to the outer scope created by row ng-repeat
 					j = $index
-					
 				-->
 				<div class="row" ng-repeat="i in range(50) track by $index">
-					<div class="tile" ng-repeat="j in range(50) track by $index" ng-mouseover="showCoordinates($parent.$index, $index)">
-						({{$parent.$index}};{{$index}})
+					<div id="tile_{{$parent.$index}}_{{$index}}" class="tile" ng-click="clickTile($parent.$index, $index)" ng-repeat="j in range(50) track by $index" ng-mouseover="showCoordinates($parent.$index, $index)" ng-mouseleave="resetCoordinates()">
+						 
 					</div>
 				</div>
 			</div>
 			<div id="menu">
-			
+				<img id="menu_tile_house" class="menu_tile" src="img/house.jpg" ng-click="selectElementToAdd('house')">
+				<img id="menu_tile_hopital" class="menu_tile" src="img/hopital.jpg" ng-click="selectElementToAdd('hopital')">
+				<img id="menu_tile_police" class="menu_tile" src="img/police.jpg" ng-click="selectElementToAdd('police')">
 			</div>
 	</body>
 </html>

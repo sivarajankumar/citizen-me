@@ -22,16 +22,34 @@ html {
 }
 
 #menu {
-	width:1200px;
+	width:1000px;
 	border: 1px solid black;
-	height:150px;
+	height:100px;
 	bottom:0;
 	margin:auto;
 }
 
+#coordinates {
+	width:100px;
+	padding:3px;
+	font-weight:bold;
+	position:absolute;
+	left:-120px;
+	background-color:#DDD;
+}
+
+.tile_highlighted {
+	height:48px;
+	background:#CCC;
+	width:48px;
+	border:2px solid red;
+	float:left;
+	background-image:url(../img/grass_small.jpg);
+}
+
 #game {
-	height:600px;
-	width:1180px;
+	height:480px;
+	width:980px;
 	margin:auto;
 	border:1px solid black;
 	padding:10px;
@@ -47,20 +65,36 @@ html {
 	padding-right:10px;
 }
 
+.menu_tile {
+	border:2px solid blue;
+	float:left;
+	margin:10px;
+	margin-right:5px;
+}
+
 .tile {
 	height:50px;
 	background:#CCC;
 	width:50px;
 	border:1px solid black;
 	float:left;
+	background-image:url(../img/grass.jpg);
 }
 
-.last_tile {
-	margin-right:20px;
+.tile_house {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/house.gif);
 }
 
 .tile:hover {
-	border:1px solid red;
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/grass_small.jpg);
 }
 
 .tileset {
