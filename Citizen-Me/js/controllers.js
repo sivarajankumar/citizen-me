@@ -48,6 +48,7 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 				if (this.isBuilding(x, y)) {
 					alert ('You destroyed a building');
 					angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile_' + $scope.game.grid.tiles[x][y]).addClass('tile');
+					$scope.game.grid.tiles[x][y] = 'grass';
 				}				
 			} else {
 				if (this.isBuilding(x, y)) {
