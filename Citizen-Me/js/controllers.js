@@ -57,7 +57,6 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 					angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + $scope.selectedTile);
 				}
 			}
-			this.resetCursor();
 		} else {
 			// TO DO
 		}
@@ -82,4 +81,16 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 		document.body.style.cursor = 'auto';
 	};
 	
+});
+
+gameApp.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
 });
