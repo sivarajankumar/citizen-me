@@ -13,7 +13,10 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 			for (var i = 0; i < number; ++i) {
 				$scope.game.grid.tiles[i] = new Array;
 				for (var j = 0; j < number; ++j) {
-					$scope.game.grid.tiles[i][j] = 'grass';
+					$scope.game.grid.tiles[i][j] = $scope.game.grid.initTiles[i * number + j];
+					if ($scope.game.grid.tiles[i][j] != 'grass') {
+						angular.element(document.querySelector('#tile_' + i + '_' + j)).removeClass('tile').addClass('tile_' + $scope.game.grid.tiles[i][j]);
+					}
 				}
 			}
 	    }).
