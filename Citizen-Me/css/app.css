@@ -97,6 +97,54 @@ html {
 	background-image:url(../img/house_small.jpg);
 }
 
+.tile_hopital {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/hopital.jpg);
+}
+
+.tile_hopital:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/hopital_small.jpg);
+}
+
+.tile_bulldozer {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/bulldozer.jpg);
+}
+
+.tile_bulldozer:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/bulldozer_small.jpg);
+}
+
+.tile_police {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/police.jpg);
+}
+
+.tile_police:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/police_small.jpg);
+}
+
 .tile:hover {
 	border:2px solid red;
 	width:48px;

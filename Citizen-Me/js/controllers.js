@@ -8,18 +8,19 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	$http.get('files/grid.json').
 		success(function(data) {
 			$scope.game = angular.fromJson(data);
-			var cpt = 0;
+			var number = 50;
 			$scope.game.grid.tiles = new Array;
 			for (var i = 0; i < number; ++i) {
+				$scope.game.grid.tiles[i] = new Array;
 				for (var j = 0; j < number; ++j) {
-					// TO DO
+					$scope.game.grid.tiles[i][j] = 'grass';
 				}
 			}
 	    }).
 	    error(function(data) {
 	    	// If using the web app locally, some browsers won't allow to $http.get files from different folders
 	    	// Mozilla Firefox should allow it though
-	    	// alert('Grid cannot be loaded.');
+	    	alert('Grid cannot be loaded.');
 	    });
 	
 	$scope.range = function(number) {
@@ -40,10 +41,30 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	
 	$scope.clickTile = function (x, y) {
 		if ($scope.selectedTile != null) {
-			angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + $scope.selectedTile);
+			if ($scope.selectedTile == 'bulldozer') {
+				if (this.isBuilding(x, y)) {
+					alert ('You destroyed a building');
+					angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile_' + $scope.game.grid.tiles[x][y]).addClass('tile');
+				}				
+			} else {
+				if (this.isBuilding(x, y)) {
+					alert ('There is already a building on this tile, destroy it first !');
+				} else {
+					$scope.game.grid.tiles[x][y] = $scope.selectedTile;
+					angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + $scope.selectedTile);
+				}
+			}
 			this.resetCursor();
 		} else {
 			// TO DO
+		}
+	};
+	
+	$scope.isBuilding = function (x, y) {
+		if ($scope.game.grid.tiles[x][y] != 'grass') {
+			return true;
+		} else {
+			return false;
 		}
 	};
 	
