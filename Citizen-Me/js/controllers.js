@@ -2,6 +2,8 @@ var gameApp = angular.module('gameApp', []);
 
 gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	
+	$scope.menu_tiles = ["house", "hopital", "police", "bulldozer"];
+	
 	// Initialization of the grid from grid.json file
 	$http.get('files/grid.json').
 		success(function(data) {
@@ -17,7 +19,7 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	    error(function(data) {
 	    	// If using the web app locally, some browsers won't allow to $http.get files from different folders
 	    	// Mozilla Firefox should allow it though
-	    	alert('Grid cannot be loaded.');
+	    	// alert('Grid cannot be loaded.');
 	    });
 	
 	$scope.range = function(number) {
@@ -36,12 +38,23 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 		$scope.coordinates = x + " ; " + y;
 	};
 	
+	$scope.clickTile = function (x, y) {
+		if ($scope.selectedTile != null) {
+			angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + $scope.selectedTile);
+			this.resetCursor();
+		} else {
+			// TO DO
+		}
+	};
+	
 	$scope.selectElementToAdd = function (tile) {
 		var url_cursor = "'" + "img/" + tile + ".jpg" + "'";
 		document.body.style.cursor = "url(" + url_cursor + "), auto";
+		$scope.selectedTile = tile;
 	};
 	
 	$scope.resetCursor = function () {
+		$scope.selectedTile = null;
 		document.body.style.cursor = 'auto';
 	};
 	

@@ -21,9 +21,7 @@
 				</div>
 			</div>
 			<div id="menu">
-				<img id="menu_tile_house" class="menu_tile" src="img/house.jpg" ng-click="selectElementToAdd('house')">
-				<img id="menu_tile_hopital" class="menu_tile" src="img/hopital.jpg" ng-click="selectElementToAdd('hopital')">
-				<img id="menu_tile_police" class="menu_tile" src="img/police.jpg" ng-click="selectElementToAdd('police')">
+				<img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menu_tiles">
 			</div>
 	</body>
 </html>

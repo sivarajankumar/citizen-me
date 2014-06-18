@@ -87,7 +87,14 @@ html {
 	width:50px;
 	border:1px solid black;
 	float:left;
-	background-image:url(../img/house.gif);
+	background-image:url(../img/house.jpg);
+}
+
+.tile_house:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/house_small.jpg);
 }
 
 .tile:hover {
