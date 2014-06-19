@@ -37,6 +37,10 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 		}
 	};
 	
+	$scope.selectedCategory = function (category) {
+		return category == $scope.menuSelectedCategory;
+	};
+	
 	$scope.range = function(number) {
 		return new Array(number);
 	};
