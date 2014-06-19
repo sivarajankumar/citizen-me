@@ -2,7 +2,9 @@ var gameApp = angular.module('gameApp', []);
 
 gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	
-	$scope.menu_tiles = ["house", "hopital", "police", "bulldozer"];
+	$scope.menuCategories = ["residential", "commercial", "industrial", "misc"];
+	$scope.menuTiles = ["house", "hopital", "police", "bulldozer"];
+	$scope.menuSelectedCategory = "";
 	
 	// Initialization of the grid from grid.json file
 	$http.get('files/grid.json').
@@ -26,6 +28,15 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	    	alert('Grid cannot be loaded.');
 	    });
 	
+	$scope.selectCategory = function (category) {
+		if (category != $scope.menuSelectedCategory) {
+			var tmpCategory = $scope.menuSelectedCategory;
+			$scope.menuSelectedCategory = category;
+			angular.element(document.querySelector("#menu_category_" + category)).removeClass('menu_tile').addClass('tile_highlighted_blue');
+			angular.element(document.querySelector("#menu_category_" + tmpCategory)).removeClass('tile_highlighted_blue').addClass('menu_tile');
+		}
+	};
+	
 	$scope.range = function(number) {
 		return new Array(number);
 	};
@@ -36,6 +47,10 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	
 	$scope.resetCoordinates = function () {
 		$scope.coordinates = "";
+	};
+	
+	$scope.noCategorySelected = function () {
+		return this.menuSelectedCategory == "";
 	};
 	
 	$scope.showCoordinates = function (x, y) {

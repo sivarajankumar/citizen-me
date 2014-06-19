@@ -1,5 +1,6 @@
 body {
 	height: 100%;
+	background-color:#D3D9FF;
 }
 
 html {
@@ -24,9 +25,58 @@ html {
 #menu {
 	width:1000px;
 	border: 1px solid black;
-	height:100px;
+	height:182px;
 	bottom:0;
 	margin:auto;
+	background-color:#2B60FF;
+	box-shadow:0px 0px 3px black;
+}
+
+#noCategorySelected {
+	width:450px;	
+	float:left;
+	margin:10px;
+	margin-left:0px;
+	height:160px;
+	border:1px solid black;
+	background-color:#CCC;
+	box-shadow:0px 0px 5px white;
+}
+
+#noCategorySelected p {
+	text-align:center;
+	margin-top:50px;
+	font-size:20px;
+	font-weight:bold;
+}
+
+.menu_tile {
+	margin-left:10px;
+	margin-top:10px;
+	border:1px solid blue;
+	float:left;
+}
+
+#categories {
+	float:left;
+	width:140px;
+	margin:10px;
+	height:160px;
+	border:1px solid black;
+	background-color:#CCC;
+	box-shadow:0px 0px 5px white;
+}
+
+h2 {
+	display:block;
+	width:100%;
+	font-weight:bold;
+	font-size:16px;
+	text-align:center;
+	padding-top:2px;
+	padding-bottom:2px;
+	border-bottom:1px solid black;
+	background-color:#AAA;
 }
 
 #coordinates {
@@ -38,6 +88,28 @@ html {
 	background-color:#DDD;
 }
 
+#gameDetails {
+	float:left;
+	width:212px;
+	margin:10px;
+	margin-left:0px;
+	height:160px;
+	border:1px solid black;
+	background-color:#CCC;
+	box-shadow:0px 0px 5px white;
+}
+
+#gameOptions {
+	float:left;
+	width:140px;
+	margin:10px;
+	margin-left:0px;
+	height:160px;
+	border:1px solid black;
+	box-shadow:0px 0px 5px white;
+	background-color:#CCC;
+}
+
 .tile_highlighted {
 	height:48px;
 	background:#CCC;
@@ -47,29 +119,33 @@ html {
 	background-image:url(../img/grass_small.jpg);
 }
 
+.tile_highlighted_blue {
+	margin-left:10px;
+	margin-top:10px;
+	height:46px;
+	background:#CCC;
+	width:46px;
+	border:3px solid blue;
+	float:left;
+}
+
 #game {
 	height:480px;
 	width:980px;
 	margin:auto;
 	border:1px solid black;
 	padding:10px;
-	background-color:grey;
+	background-color:#2B60FF;
 	overflow:auto;
 	margin-top:10px;
 	margin-bottom:10px;
+	box-shadow:0px 0px 3px black;
 }
 
 .row {
 	clear:both;
 	width:2600px;
 	padding-right:10px;
-}
-
-.menu_tile {
-	border:2px solid blue;
-	float:left;
-	margin:10px;
-	margin-right:5px;
 }
 
 .tile {
@@ -174,5 +250,5 @@ html {
 
 * {
 	margin:0;
-	padding:0;
+	padding:0
 }

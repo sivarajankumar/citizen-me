@@ -21,7 +21,23 @@
 				</div>
 			</div>
 			<div id="menu">
-				<img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menu_tiles">
+				<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menu_tiles"> --> 
+				<div id="categories">
+					<h2>CATEGORIES</h2>
+					<img id="menu_category_{{i}}" class="menu_tile" src="img/category_{{i}}.jpg" ng-click="selectCategory(i)" ng-repeat="i in menuCategories">
+				</div>
+				<div id="noCategorySelected" ng-show="noCategorySelected()">
+					<p>Select a category to see buildings <br>and parts you can use.</p>
+				</div>
+				<div id="noCategorySelected" ng-hide="noCategorySelected()">
+					<p>ELEMENTS</p>
+				</div>
+				<div id="gameDetails">
+					<h2>DETAILS</h2>
+				</div>
+				<div id="gameOptions">
+					<h2>OPTIONS</h2>
+				</div>
 			</div>
 	</body>
 </html>
