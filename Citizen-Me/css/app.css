@@ -39,7 +39,20 @@ html {
 	margin-left:0px;
 	height:160px;
 	border:1px solid black;
-	background-color:#CCC;
+	border-left:none;
+	background-color:#EEE;
+	box-shadow:0px 0px 5px white;
+}
+
+#selectedCategory {
+	width:450px;	
+	float:left;
+	margin:10px;
+	margin-left:0px;
+	height:158px;
+	border:2px solid #142d76;
+	border-left:none;
+	background-color:#EEE;
 	box-shadow:0px 0px 5px white;
 }
 
@@ -50,6 +63,12 @@ html {
 	font-weight:bold;
 }
 
+.menu_category {
+	height:29px;
+	border:1px solid blue;
+	border-right:2px solid blue;
+}
+
 .menu_tile {
 	margin-left:10px;
 	margin-top:10px;
@@ -57,14 +76,29 @@ html {
 	float:left;
 }
 
+.tile_highlighted_blue {
+	height:29px;
+	border:1px solid blue;
+	border-right:none;
+	background-color:#EEE;
+}
+
 #categories {
 	float:left;
 	width:140px;
 	margin:10px;
+	margin-right:0px;
 	height:160px;
 	border:1px solid black;
 	background-color:#CCC;
+	text-align:center;
+	border-right:none;
 	box-shadow:0px 0px 5px white;
+}
+
+#categories p {
+	padding-top:9px;
+	font-weight:bold;
 }
 
 h2 {
@@ -88,6 +122,10 @@ h2 {
 	background-color:#DDD;
 }
 
+#gameDetails p {
+	text-align:center;
+}
+
 #gameDetails {
 	float:left;
 	width:212px;
@@ -95,7 +133,7 @@ h2 {
 	margin-left:0px;
 	height:160px;
 	border:1px solid black;
-	background-color:#CCC;
+	background-color:#EEE;
 	box-shadow:0px 0px 5px white;
 }
 
@@ -107,7 +145,7 @@ h2 {
 	height:160px;
 	border:1px solid black;
 	box-shadow:0px 0px 5px white;
-	background-color:#CCC;
+	background-color:#EEE;
 }
 
 .tile_highlighted {
@@ -119,15 +157,7 @@ h2 {
 	background-image:url(../img/grass_small.jpg);
 }
 
-.tile_highlighted_blue {
-	margin-left:10px;
-	margin-top:10px;
-	height:46px;
-	background:#CCC;
-	width:46px;
-	border:3px solid blue;
-	float:left;
-}
+
 
 #game {
 	height:480px;
@@ -250,5 +280,26 @@ h2 {
 
 * {
 	margin:0;
+	font-family:"Verdana";
 	padding:0
+}
+
+.fadeIn,
+.fadeOut {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+}
+
+.fadeIn.ng-hide-remove,
+.fadeOut.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: none;
+}
+
+.fadeOut.ng-hide-add,
+.fadeIn.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
 }

@@ -1,10 +1,20 @@
-var gameApp = angular.module('gameApp', []);
+var gameApp = angular.module('gameApp', ['ngAnimate']);
 
-gameApp.controller('gameAreaCtrl', function ($scope, $http) {
+gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout) {
 	
 	$scope.menuCategories = ["residential", "commercial", "industrial", "misc"];
 	$scope.menuTiles = ["house", "hopital", "police", "bulldozer"];
 	$scope.menuSelectedCategory = "";
+	
+	$scope.prices = {
+		house:"1000",
+		hopital:"5000",
+		police:"2000",
+	};
+	
+	$scope.money = 50000;
+	$scope.income = 1000;
+	$scope.incomeSign = "+";
 	
 	// Initialization of the grid from grid.json file
 	$http.get('files/grid.json').
@@ -28,12 +38,25 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 	    	alert('Grid cannot be loaded.');
 	    });
 	
+	$scope.income_time = 60;
+	
+	var calcMoney = function () {
+		$scope.income_time -= 1;
+		if ($scope.income_time == 0) {
+			$scope.money += $scope.income;
+			$scope.income_time = 60;
+		}
+		$timeout(calcMoney, 1000);
+	};
+	
+	$timeout(calcMoney, 1000);
+	
 	$scope.selectCategory = function (category) {
 		if (category != $scope.menuSelectedCategory) {
 			var tmpCategory = $scope.menuSelectedCategory;
 			$scope.menuSelectedCategory = category;
-			angular.element(document.querySelector("#menu_category_" + category)).removeClass('menu_tile').addClass('tile_highlighted_blue');
-			angular.element(document.querySelector("#menu_category_" + tmpCategory)).removeClass('tile_highlighted_blue').addClass('menu_tile');
+			angular.element(document.querySelector("#menu_category_" + category)).removeClass('menu_category').addClass('tile_highlighted_blue');
+			angular.element(document.querySelector("#menu_category_" + tmpCategory)).removeClass('tile_highlighted_blue').addClass('menu_category');
 		}
 	};
 	
@@ -75,11 +98,16 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http) {
 				} else {
 					$scope.game.grid.tiles[x][y] = $scope.selectedTile;
 					angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + $scope.selectedTile);
+					$scope.money -= this.priceOf($scope.selectedTile);
 				}
 			}
 		} else {
 			// TO DO
 		}
+	};
+	
+	$scope.priceOf = function (element) {
+		return $scope.prices[element];
 	};
 	
 	$scope.isBuilding = function (x, y) {

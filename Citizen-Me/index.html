@@ -3,7 +3,8 @@
 	<head>
 		<title>Citizen-Me</title>
 		<link rel="stylesheet" href="css/app.css">
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.min.js "></script>
 		<script type="text/javascript" src="js/controllers.js"></script>
 	</head>
 	<body ng-controller="gameAreaCtrl"  ng-right-click="resetCursor()">
@@ -22,17 +23,30 @@
 			</div>
 			<div id="menu"> 
 				<div id="categories">
-					<h2>CATEGORIES</h2>
-					<img id="menu_category_{{i}}" class="menu_tile" src="img/category_{{i}}.jpg" ng-click="selectCategory(i)" ng-repeat="i in menuCategories">
+					<p id="menu_category_{{i}}" class="menu_category" ng-click="selectCategory(i)" ng-repeat="i in menuCategories">
+						{{i | uppercase}}
+					</p>
 				</div>
 				<div id="noCategorySelected" ng-show="noCategorySelected()">
 					<p>Select a category to see buildings <br>and parts you can use.</p>
 				</div>
-				<div id="noCategorySelected" ng-show="selectedCategory('residential')">
+				<div id="selectedCategory" ng-show="selectedCategory('residential')">
 					<img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles">
+				</div>
+				<div id="selectedCategory" ng-show="selectedCategory('commercial')">
+					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
+				</div>
+				<div id="selectedCategory" ng-show="selectedCategory('industrial')">
+					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
+				</div>
+				<div id="selectedCategory" ng-show="selectedCategory('misc')">
+					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
 				</div>
 				<div id="gameDetails">
 					<h2>DETAILS</h2>
+					<p>
+						${{money}}<br>{{income_time}}s ({{incomeSign}}{{income}})
+					</p>
 				</div>
 				<div id="gameOptions">
 					<h2>OPTIONS</h2>
