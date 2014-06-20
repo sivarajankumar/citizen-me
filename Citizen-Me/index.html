@@ -5,10 +5,16 @@
 		<link rel="stylesheet" href="css/app.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.min.js "></script>
-		<script type="text/javascript" src="js/controllers.js"></script>
+		
+		<script type="text/javascript" src="scripts/app.js"></script>
+		<script type="text/javascript" src="scripts/controllers/gameAreaCtrl.js"></script>
+		<script type="text/javascript" src="scripts/directives/rightClickDirective.js"></script>
+		<script type="text/javascript" src="scripts/services/priceService.js"></script>
+		<script type="text/javascript" src="scripts/services/moneyService.js"></script>
+		<script type="text/javascript" src="scripts/services/gridService.js"></script>
 	</head>
 	<body ng-controller="gameAreaCtrl"  ng-right-click="resetCursor()">
-			<div id="header" ng-mouseover="resetCursor()">
+			<div id="header">
 			</div>
 			<div id="game">
 				<!-- NEVER DELETE THIS COMMENT
@@ -45,7 +51,7 @@
 				<div id="gameDetails">
 					<h2>DETAILS</h2>
 					<p>
-						${{money}}<br>{{income_time}}s ({{incomeSign}}{{income}})
+						${{money.value}}<br>{{moneyUpdateTime}}s ({{money.incomeSign}}{{money.income}})
 					</p>
 				</div>
 				<div id="gameOptions">
