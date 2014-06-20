@@ -39,9 +39,11 @@ gameApp.service ('GridService', function ($http) {
 				return 1;
 			}
 		} else {
-			grid[x][y] = this.getTileId (actionTile);
-			angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + actionTile);
-			return 1;
+			if (actionTile != 'bulldozer') {
+				grid[x][y] = this.getTileId (actionTile);
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + actionTile);
+				return 1;
+			}
 		}
 		return 0;
 	};
