@@ -28,7 +28,6 @@ gameApp.service ('GridService', function ($http) {
 			var centerLeftGrid = (grid[0].scrollLeftMax)/2;
 			grid[0].scrollTop = centerTopGrid;
 			grid[0].scrollLeft = centerLeftGrid;
-			console.log(grid[0].scrollTopMax);
 
 
 		    }).
