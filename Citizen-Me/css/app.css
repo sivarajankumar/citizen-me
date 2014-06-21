@@ -196,6 +196,10 @@ h2 {
 	background-image:url(../img/house.jpg);
 }
 
+.tmp_tile {
+	opacity:0.5;
+}
+
 .tile_house:hover {
 	border:2px solid red;
 	width:48px;

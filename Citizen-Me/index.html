@@ -21,7 +21,7 @@
 					j = $index
 				-->
 				<div class="row" ng-repeat="i in range(50) track by $index">
-					<div id="tile_{{$parent.$index}}_{{$index}}" class="tile" ng-click="clickTile($parent.$index, $index)" ng-repeat="j in range(50) track by $index" ng-mouseover="showCoordinates($parent.$index, $index)" ng-mouseleave="resetCoordinates()">
+					<div id="tile_{{$parent.$index}}_{{$index}}" class="tile" ng-repeat="j in range(50) track by $index" ng-mousedown="mouseDownTile($parent.$index, $index, $event)" ng-mouseup="mouseUpTile($parent.$index, $index, $event)" ng-mouseover="mouseHoverTile($parent.$index, $index)">
 
 					</div>
 				</div>

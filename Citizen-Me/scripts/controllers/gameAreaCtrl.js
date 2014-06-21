@@ -21,6 +21,9 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		$timeout(updateGame, 1000);
 	};
 	$timeout(updateGame, 1000);
+
+	$scope.elementListToAdd = "";
+	$scope.selectingElementList = false;
 	
 	// --------------- END INITIALIZATIONS --------------- //
 	
@@ -56,7 +59,39 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	$scope.showCoordinates = function (x, y) {
 		$scope.coordinates = x + " ; " + y;
 	};
+
+	$scope.mouseDownTile = function (x, y, event) {
+		event.preventDefault();
+		// Right click
+		if (event.which != 3) {
+			angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
+			$scope.selectingElementList = true;
+			$scope.elementListToAdd = x.toString() + y.toString();
+		}
+	};
+
+	$scope.mouseHoverTile = function (x, y) {
+		if ($scope.selectingElementList) {
+			$scope.elementListToAdd += " - " + x.toString() + y.toString();
+		}
+	};
 	
+	$scope.mouseUpTile = function (x, y, event) {
+		$scope.selectingElementList = false;
+
+		if (event.which != 3) {
+			if ($scope.elementListToAdd == x.toString() + y.toString()) {
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmp_tile');
+				this.clickTile (x, y);
+			} else {
+				// TO DO:
+				// REMOVE OPACITY
+				// TREAT LIST OF ELEMENTS TO ADD
+			}
+		}
+		$scope.elementListToAdd = "";
+	};
+
 	$scope.clickTile = function (x, y) {
 		if ($scope.selectedTile != null) {
 			var actionDone = GridService.changeTile (x, y, $scope.selectedTile);
