@@ -23,6 +23,14 @@ gameApp.service ('GridService', function ($http) {
 						}
 					}
 				}
+			var grid = angular.element(document.querySelector('#game'));
+			var centerTopGrid = (grid[0].scrollTopMax)/2;
+			var centerLeftGrid = (grid[0].scrollLeftMax)/2;
+			grid[0].scrollTop = centerTopGrid;
+			grid[0].scrollLeft = centerLeftGrid;
+			console.log(grid[0].scrollTopMax);
+
+
 		    }).
 		    error(function(data) {
 		    	// If using the web app locally, some browsers won't allow to $http.get files from different folders
