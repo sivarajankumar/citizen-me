@@ -1,4 +1,4 @@
-gameApp.service ('GridService', function ($http) {
+gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 	
 	var GRASS = "0";
 	var HOUSE = "1";
@@ -8,7 +8,7 @@ gameApp.service ('GridService', function ($http) {
 	var grid;
 	
 	this.initGrid = function () {
-		var self = this;
+		var oThis = this;
 		// Initialization of the grid from grid.json file
 		$http.get('files/grid.json').
 			success(function(data) {
@@ -19,7 +19,7 @@ gameApp.service ('GridService', function ($http) {
 					for (var j = 0; j < gridWidth; ++j) {
 						// Default grid tiles are grass, unneeded class changes are avoided
 						if (grid[i][j] != GRASS) {
-							angular.element(document.querySelector('#tile_' + i + '_' + j)).removeClass('tile').addClass('tile_' + self.getTileName(grid[i][j]));
+							angular.element(document.querySelector('#tile_' + i + '_' + j)).removeClass('tile').addClass('tile_' + oThis.getTileName(grid[i][j]));
 						}
 					}
 				}
@@ -34,14 +34,17 @@ gameApp.service ('GridService', function ($http) {
 	this.changeTile = function (x, y, actionTile) {
 		if (this.isBuilding (x, y)) {
 			if (actionTile == 'bulldozer') {
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile_' + this.getTileName(grid[x][y])).addClass('tile');
+				var tileRemoved = this.getTileName(grid[x][y]);
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile_' + tileRemoved).addClass('tile');
 				grid[x][y] = GRASS;
+				MoneyService.changeIncomeValue (PriceService.incomeOf(tileRemoved), '-');
 				return 1;
 			}
 		} else {
 			if (actionTile != 'bulldozer') {
 				grid[x][y] = this.getTileId (actionTile);
 				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + actionTile);
+				MoneyService.changeIncomeValue (PriceService.incomeOf(actionTile), '+');
 				return 1;
 			}
 		}

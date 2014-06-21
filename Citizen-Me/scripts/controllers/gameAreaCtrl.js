@@ -9,18 +9,18 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	$scope.money = MoneyService.updateMoney();
 	$scope.grid = GridService.initGrid();
 	
-	$scope.moneyUpdateTime = 60;
+	$scope.updateTime = 30;
 	
-	var autoUpdateMoney = function () {
-		$scope.moneyUpdateTime -= 1;
-		if ($scope.moneyUpdateTime == 0) {
-			$scope.moneyUpdateTime = 60;
+	var updateGame = function () {
+		$scope.updateTime -= 1;
+		if ($scope.updateTime == 0) {
+			$scope.updateTime = 30;
 			MoneyService.calcMoneyIncome ();
 			$scope.money = MoneyService.updateMoney();
 		}
-		$timeout(autoUpdateMoney, 1000);
+		$timeout(updateGame, 1000);
 	};
-	$timeout(autoUpdateMoney, 1000);
+	$timeout(updateGame, 1000);
 	
 	// --------------- END INITIALIZATIONS --------------- //
 	

@@ -13,6 +13,15 @@ gameApp.service ('MoneyService', function () {
 		this.updateIncome();
 		money.value += money.income;
 	};
+
+	this.changeIncomeValue = function (val, sign) {
+		if (sign == '+') {
+			money.income += val;
+		} else {
+			money.income -= val;
+		}
+		money.incomeSign = (money.income < 0) ? "" : "+";
+	}
 	
 	this.changeMoneyValue = function (val, sign) {
 		if (sign == '+') {

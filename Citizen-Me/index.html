@@ -22,7 +22,7 @@
 				-->
 				<div class="row" ng-repeat="i in range(50) track by $index">
 					<div id="tile_{{$parent.$index}}_{{$index}}" class="tile" ng-click="clickTile($parent.$index, $index)" ng-repeat="j in range(50) track by $index" ng-mouseover="showCoordinates($parent.$index, $index)" ng-mouseleave="resetCoordinates()">
-						 
+
 					</div>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 				<div id="gameDetails">
 					<h2>DETAILS</h2>
 					<p>
-						${{money.value}}<br>{{moneyUpdateTime}}s ({{money.incomeSign}}{{money.income}})
+						${{money.value}}<br>{{updateTime}}s ({{money.incomeSign}}{{money.income}})
 					</p>
 				</div>
 				<div id="gameOptions">
