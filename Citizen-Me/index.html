@@ -15,7 +15,7 @@
 	<body ng-controller="gameAreaCtrl"  ng-right-click="resetCursor()">
 			<div id="header">
 			</div>
-			<div id="game">
+			<div id="game" ng-mouseleave="resetSelectedTile()">
 				<!-- NEVER DELETE THIS COMMENT
 					i = $parent.$index | $parent is needed to get to the outer scope created by row ng-repeat
 					j = $index

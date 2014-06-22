@@ -22,8 +22,7 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	};
 	$timeout(updateGame, 1000);
 
-	$scope.elementListToAdd = "";
-	$scope.selectingElementList = false;
+	$scope.elementToAdd = "";
 	
 	// --------------- END INITIALIZATIONS --------------- //
 	
@@ -65,31 +64,42 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		// Right click
 		if (event.which != 3) {
 			angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
-			$scope.selectingElementList = true;
-			$scope.elementListToAdd = x.toString() + y.toString();
+			$scope.elementToAdd = x.toString() + ';' + y.toString();
 		}
 	};
 
+	$scope.resetSelectedTile = function () {
+		var split = $scope.elementToAdd.split(";");
+		angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmp_tile');
+		$scope.elementToAdd = "";
+	};
+
 	$scope.mouseHoverTile = function (x, y) {
-		if ($scope.selectingElementList) {
-			$scope.elementListToAdd += " - " + x.toString() + y.toString();
+		if ($scope.elementToAdd != "") {
+			var split = $scope.elementToAdd.split(";");
+			angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmp_tile');
+			if ($scope.selectedTile != 'police' && $scope.selectedTile != 'bulldozer') {
+				$scope.elementToAdd = "";
+			} else {
+				this.clickTile(split[0], split[1]);
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
+				$scope.elementToAdd = x.toString() + ';' + y.toString();
+			}
 		}
 	};
 	
 	$scope.mouseUpTile = function (x, y, event) {
-		$scope.selectingElementList = false;
-
 		if (event.which != 3) {
-			if ($scope.elementListToAdd == x.toString() + y.toString()) {
+			if ($scope.elementToAdd == x.toString() + ';' + y.toString()) {
 				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmp_tile');
 				this.clickTile (x, y);
-			} else {
-				// TO DO:
-				// REMOVE OPACITY
-				// TREAT LIST OF ELEMENTS TO ADD
+			} 
+		} else {
+			if ($scope.elementToAdd != "") {
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmp_tile');
 			}
 		}
-		$scope.elementListToAdd = "";
+		$scope.elementToAdd = "";
 	};
 
 	$scope.clickTile = function (x, y) {
@@ -102,6 +112,7 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 			}
 		} else {
 			// TO DO
+			// Display tile's popup
 		}
 	};
 	
