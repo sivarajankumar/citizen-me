@@ -310,7 +310,7 @@ h2 {
 
 .tooltipMenu {
 	
-	display : none;
+display : none;
 background: #f6f8f9; /* Old browsers */
 background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(50%,#e5ebee), color-stop(51%,#d7dee3), color-stop(100%,#f5f7f9)); /* Chrome,Safari4+ */
@@ -328,8 +328,9 @@ font-size : 10px;
 position : fixed;
 float : none;
 }
+
 .downTooltip{
-	display : none;
+display : none;
 position : fixed;
 float : none;
 }

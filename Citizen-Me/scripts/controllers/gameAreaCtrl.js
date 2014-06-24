@@ -130,11 +130,11 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	};
 	
 	$scope.createToolTip = function(event){
-	TooltipService.init(event);
-	TooltipService.showTooltip();
-	TooltipService.addHtmlInTooltip("<p>Mon BEAU Html a modifier</p>"); 
-
+		TooltipService.init(event);
+		TooltipService.showTooltip();
+		TooltipService.addHtmlInTooltip("<p>Mon BEAU Html a modifier</p>"); 
 	};
+	
 	$scope.unshowToolTip = function(event){
 		TooltipService.unshowTooltip();
 	}
