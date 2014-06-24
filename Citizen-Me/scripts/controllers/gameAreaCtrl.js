@@ -77,17 +77,23 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	};
 
 	$scope.mouseHoverTile = function (x, y) {
-		if ($scope.elementToAdd != "") {
-			var split = $scope.elementToAdd.split(";");
-			angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmp_tile');
-			if ($scope.selectedTile != 'police' && $scope.selectedTile != 'bulldozer') {
-				$scope.elementToAdd = "";
-			} else {
-				this.clickTile(split[0], split[1]);
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
-				$scope.elementToAdd = x.toString() + ';' + y.toString();
+		if ($scope.selectedTile != null) 
+		{
+			if ($scope.elementToAdd != "") {
+				var split = $scope.elementToAdd.split(";");
+				angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmp_tile');
+				if ($scope.selectedTile != 'police' && $scope.selectedTile != 'bulldozer') {
+					$scope.elementToAdd = "";
+				} else {
+					this.clickTile(split[0], split[1]);
+					angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
+					$scope.elementToAdd = x.toString() + ';' + y.toString();
+				}
 			}
+		} else {
+			GridService.showPopup(x, y);
 		}
+		
 	};
 	
 	$scope.mouseUpTile = function (x, y, event) {
@@ -129,13 +135,13 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		document.body.style.cursor = 'auto';
 	};
 	
-	$scope.createToolTip = function(event){
+	$scope.createToolTip = function(event) {
 		TooltipService.init(event);
 		TooltipService.showTooltip();
 		TooltipService.addHtmlInTooltip("<p>Mon BEAU Html a modifier</p>"); 
 	};
-	
-	$scope.unshowToolTip = function(event){
+
+	$scope.unshowToolTip = function(event) {
 		TooltipService.unshowTooltip();
 	}
 	

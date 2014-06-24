@@ -1,3 +1,8 @@
+* {
+	margin:0;
+	font-family:"Verdana";
+	padding:0
+}
 body {
 	height: 100%;
 	background-color:#D3D9FF;
@@ -195,8 +200,6 @@ h2 {
 	float:left;
 	background-image:url(../img/house.jpg);
 }
-
-.tmp_tile {
 	opacity:0.5;
 }
 
@@ -282,10 +285,8 @@ h2 {
 	border-top: 15px solid red;
 }
 
-* {
-	margin:0;
-	font-family:"Verdana";
-	padding:0
+.tmp_tile {
+	opacity : 0.5;
 }
 
 .fadeIn,
@@ -309,7 +310,6 @@ h2 {
 }
 
 .tooltipMenu {
-	
 display : none;
 background: #f6f8f9; /* Old browsers */
 background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 50%, #d7dee3 51%, #f5f7f9 100%); /* FF3.6+ */
@@ -324,6 +324,7 @@ border-radius:0px;
 width : 200px;
 height : 100px;
 border: 1px solid #000000;
+position : float;
 font-size : 10px;
 position : fixed;
 float : none;

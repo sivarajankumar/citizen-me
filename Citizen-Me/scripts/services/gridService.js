@@ -18,8 +18,8 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 				for (var i = 0; i < gridWidth; ++i) {
 					for (var j = 0; j < gridWidth; ++j) {
 						// Default grid tiles are grass, unneeded class changes are avoided
-						if (grid[i][j] != GRASS) {
-							angular.element(document.querySelector('#tile_' + i + '_' + j)).removeClass('tile').addClass('tile_' + oThis.getTileName(grid[i][j]));
+						if (grid[i][j]['id'] != GRASS) {
+							angular.element(document.querySelector('#tile_' + i + '_' + j)).removeClass('tile').addClass('tile_' + oThis.getTileName(grid[i][j]['id']));
 						}
 					}
 				}
@@ -39,15 +39,15 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 	this.changeTile = function (x, y, actionTile) {
 		if (this.isBuilding (x, y)) {
 			if (actionTile == 'bulldozer') {
-				var tileRemoved = this.getTileName(grid[x][y]);
+				var tileRemoved = this.getTileName(grid[x][y]['id']);
 				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile_' + tileRemoved).addClass('tile');
-				grid[x][y] = GRASS;
+				grid[x][y]['id'] = GRASS;
 				MoneyService.changeIncomeValue (PriceService.incomeOf(tileRemoved), '-');
 				return 1;
 			}
 		} else {
 			if (actionTile != 'bulldozer') {
-				grid[x][y] = this.getTileId (actionTile);
+				grid[x][y]['id'] = this.getTileId (actionTile);
 				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + actionTile);
 				MoneyService.changeIncomeValue (PriceService.incomeOf(actionTile), '+');
 				return 1;
@@ -61,7 +61,7 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 	};
 	
 	this.isBuilding = function (x, y) {
-		if (grid[x][y] != "0") {
+		if (grid[x][y]['id'] != "0") {
 			return true;
 		} else {
 			return false;
@@ -96,6 +96,10 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 			default:
 				return GRASS;
 		}
+	};
+
+	this.showPopup = function (x, y) {
+		
 	};
 	
 });
