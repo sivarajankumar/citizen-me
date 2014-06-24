@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="scripts/services/priceService.js"></script>
 		<script type="text/javascript" src="scripts/services/moneyService.js"></script>
 		<script type="text/javascript" src="scripts/services/gridService.js"></script>
+		<script type="text/javascript" src="scripts/services/tooltipService.js"></script>
 	</head>
 	<body ng-controller="gameAreaCtrl"  ng-right-click="resetCursor()">
 			<div id="header">
@@ -27,6 +28,7 @@
 				</div>
 			</div>
 			<div id="menu"> 
+
 				<div id="categories">
 					<p id="menu_category_{{i}}" class="menu_category" ng-click="selectCategory(i)" ng-repeat="i in menuCategories">
 						{{i | uppercase}}
@@ -36,7 +38,7 @@
 					<p>Select a category to see buildings <br>and parts you can use.</p>
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('residential')">
-					<img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles">
+					<img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles" ng-mouseover ="createToolTip($event)" ng-mouseleave = "unshowToolTip($event)">
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('commercial')">
 					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
@@ -57,5 +59,9 @@
 					<h2>OPTIONS</h2>
 				</div>
 			</div>
+			<div id="tooltipElement" class="tooltipMenu" style="display:none;">
+	
+			</div>
+			<img id="downTooltip" class="downTooltip" src="img/downTooltip.png"/>			
 	</body>
 </html>
