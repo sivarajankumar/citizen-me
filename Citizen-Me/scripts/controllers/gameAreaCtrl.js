@@ -1,10 +1,12 @@
-gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceService, MoneyService, GridService) {
+gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceService, MoneyService, GridService, TooltipService) {
 	
 	// --------------- BEGIN INITIALIZATIONS --------------- //
 	
 	$scope.menuCategories = ["residential", "commercial", "industrial", "misc"];
 	$scope.menuTiles = ["house", "hopital", "police", "bulldozer"];
 	$scope.menuSelectedCategory = "";
+
+
 	
 	$scope.money = MoneyService.updateMoney();
 	$scope.grid = GridService.initGrid();
@@ -126,5 +128,15 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		$scope.selectedTile = null;
 		document.body.style.cursor = 'auto';
 	};
+	
+	$scope.createToolTip = function(event){
+	TooltipService.init(event);
+	TooltipService.showTooltip();
+	TooltipService.addHtmlInTooltip("<p>Mon BEAU Html a modifier</p>"); 
+
+	};
+	$scope.unshowToolTip = function(event){
+		TooltipService.unshowTooltip();
+	}
 	
 });
