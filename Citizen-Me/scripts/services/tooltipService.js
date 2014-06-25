@@ -1,4 +1,4 @@
-gameApp.service ('TooltipService', function() {}
+gameApp.service ('TooltipService', function() {
 	this.position = {
 		x : 0,
 		y : 0
