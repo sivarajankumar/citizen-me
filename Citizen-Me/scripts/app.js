@@ -1,1 +1,1 @@
-var gameApp = angular.module('gameApp', ['ngAnimate']);
+var gameApp = angular.module('gameApp', ['ngAnimate', 'ngSanitize']);

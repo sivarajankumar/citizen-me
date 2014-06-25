@@ -1,4 +1,5 @@
 gameApp.service ('TooltipService', function() {
+
 	this.position = {
 		x : 0,
 		y : 0
@@ -35,4 +36,5 @@ gameApp.service ('TooltipService', function() {
 	this.addHtmlInTooltip = function(html) {	
 		oThis.tooltipHtml[0].innerHTML = html;
 	};
+	
 });																											

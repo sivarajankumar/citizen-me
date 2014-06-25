@@ -40,7 +40,7 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 		if (this.isBuilding (x, y)) {
 			if (actionTile == 'bulldozer') {
 				var tileRemoved = this.getTileName(grid[x][y]['id']);
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile_' + tileRemoved).addClass('tile');
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile' + tileRemoved).addClass('tile');
 				grid[x][y]['id'] = GRASS;
 				MoneyService.changeIncomeValue (PriceService.incomeOf(tileRemoved), '-');
 				return 1;
@@ -48,7 +48,7 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 		} else {
 			if (actionTile != 'bulldozer') {
 				grid[x][y]['id'] = this.getTileId (actionTile);
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_' + actionTile);
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile' + actionTile);
 				MoneyService.changeIncomeValue (PriceService.incomeOf(actionTile), '+');
 				return 1;
 			}
@@ -102,4 +102,12 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 		
 	};
 	
+	this.showSaveJSON = function ($scope) {
+		$scope.saveJSON = angular.toJson(grid, true);
+	};
+
+	this.showLoadJSON = function ($scope) {
+		$scope.saveJSON = "Not ready yet."
+	};
+
 });

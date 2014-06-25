@@ -5,8 +5,6 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	$scope.menuCategories = ["residential", "commercial", "industrial", "misc"];
 	$scope.menuTiles = ["house", "hopital", "police", "bulldozer"];
 	$scope.menuSelectedCategory = "";
-
-
 	
 	$scope.money = MoneyService.updateMoney();
 	$scope.grid = GridService.initGrid();
@@ -25,6 +23,13 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	$timeout(updateGame, 1000);
 
 	$scope.elementToAdd = "";
+
+	$scope.saveArea = false;
+	$scope.loadArea = false;
+
+	$scope.saveJSON = "Test";
+
+	$scope.tooltip = [];
 	
 	// --------------- END INITIALIZATIONS --------------- //
 	
@@ -32,8 +37,8 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		if (category != $scope.menuSelectedCategory) {
 			var tmpCategory = $scope.menuSelectedCategory;
 			$scope.menuSelectedCategory = category;
-			angular.element(document.querySelector("#menu_category_" + category)).removeClass('menu_category').addClass('tile_highlighted_blue');
-			angular.element(document.querySelector("#menu_category_" + tmpCategory)).removeClass('tile_highlighted_blue').addClass('menu_category');
+			angular.element(document.querySelector("#menuCategory" + category)).removeClass('menuCategory').addClass('menuCategorySelected');
+			angular.element(document.querySelector("#menuCategory" + tmpCategory)).removeClass('menuCategorySelected').addClass('menuCategory');
 		}
 	};
 	
@@ -43,10 +48,6 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	
 	$scope.range = function(number) {
 		return new Array(number);
-	};
-	
-	$scope.highlight = function(x, y) {
-		angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile_highlighted');
 	};
 	
 	$scope.resetCoordinates = function () {
@@ -65,14 +66,14 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		event.preventDefault();
 		// Right click
 		if (event.which != 3) {
-			angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
+			angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmpTile');
 			$scope.elementToAdd = x.toString() + ';' + y.toString();
 		}
 	};
 
 	$scope.resetSelectedTile = function () {
 		var split = $scope.elementToAdd.split(";");
-		angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmp_tile');
+		angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmpTile');
 		$scope.elementToAdd = "";
 	};
 
@@ -81,12 +82,12 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		{
 			if ($scope.elementToAdd != "") {
 				var split = $scope.elementToAdd.split(";");
-				angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmp_tile');
+				angular.element(document.querySelector('#tile_' + split[0] + '_' + split[1])).removeClass('tmpTile');
 				if ($scope.selectedTile != 'police' && $scope.selectedTile != 'bulldozer') {
 					$scope.elementToAdd = "";
 				} else {
 					this.clickTile(split[0], split[1]);
-					angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmp_tile');
+					angular.element(document.querySelector('#tile_' + x + '_' + y)).addClass('tmpTile');
 					$scope.elementToAdd = x.toString() + ';' + y.toString();
 				}
 			}
@@ -99,12 +100,12 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	$scope.mouseUpTile = function (x, y, event) {
 		if (event.which != 3) {
 			if ($scope.elementToAdd == x.toString() + ';' + y.toString()) {
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmp_tile');
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmpTile');
 				this.clickTile (x, y);
 			} 
 		} else {
 			if ($scope.elementToAdd != "") {
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmp_tile');
+				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tmpTile');
 			}
 		}
 		$scope.elementToAdd = "";
@@ -135,14 +136,44 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 		document.body.style.cursor = 'auto';
 	};
 	
-	$scope.createToolTip = function(event) {
+	$scope.createToolTip = function(event, category) {
+		this.tooltip.name = category.toUpperCase();
+		this.tooltip.price = PriceService.priceOf(category);
+		this.tooltip.income = PriceService.incomeOf(category);
 		TooltipService.init(event);
 		TooltipService.showTooltip();
-		TooltipService.addHtmlInTooltip("<p>Mon BEAU Html a modifier</p>"); 
 	};
 
 	$scope.unshowToolTip = function(event) {
 		TooltipService.unshowTooltip();
 	}
+
+	$scope.showSaveArea = function () {
+		if (this.saveArea) {
+			this.saveArea = false;
+		} else {
+			this.saveArea = true;
+			this.loadArea = false;
+			GridService.showSaveJSON($scope);
+		}
+	};
+
+	$scope.showLoadArea = function () {
+		if (this.loadArea) {
+			this.loadArea = false;
+		} else {
+			$scope.loadArea = true;
+			$scope.saveArea = false;
+			GridService.showLoadJSON($scope);
+		}
+	};
 	
+	$scope.save = function () {
+		return this.saveArea;
+	};
+
+	$scope.load = function () {
+		return this.loadArea;
+	};
+
 });

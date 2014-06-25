@@ -1,0 +1,80 @@
+
+.tile {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/grass.jpg);
+}
+
+.tile:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/grass_small.jpg);
+}
+
+.tilehouse {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/house.jpg);
+}
+
+.tilehouse:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/house_small.jpg);
+}
+
+.tilehopital {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/hopital.jpg);
+}
+
+.tilehopital:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/hopital_small.jpg);
+}
+
+.tilebulldozer {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/bulldozer.jpg);
+}
+
+.tilebulldozer:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/bulldozer_small.jpg);
+}
+
+.tilepolice {
+	height:50px;
+	background:#CCC;
+	width:50px;
+	border:1px solid black;
+	float:left;
+	background-image:url(../img/police.jpg);
+}
+
+.tilepolice:hover {
+	border:2px solid red;
+	width:48px;
+	height:48px;
+	background-image:url(../img/police_small.jpg);
+}

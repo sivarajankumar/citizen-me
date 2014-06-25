@@ -3,8 +3,10 @@
 	<head>
 		<title>Citizen-Me</title>
 		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/tiles.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-animate.min.js "></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.min.js "></script>
 		<script type="text/javascript" src="scripts/app.js"></script>
 		<script type="text/javascript" src="scripts/controllers/gameAreaCtrl.js"></script>
 		<script type="text/javascript" src="scripts/directives/rightClickDirective.js"></script>
@@ -30,7 +32,7 @@
 			<div id="menu"> 
 
 				<div id="categories">
-					<p id="menu_category_{{i}}" class="menu_category" ng-click="selectCategory(i)" ng-repeat="i in menuCategories">
+					<p id="menuCategory{{i}}" class="menuCategory" ng-click="selectCategory(i)" ng-repeat="i in menuCategories">
 						{{i | uppercase}}
 					</p>
 				</div>
@@ -38,7 +40,7 @@
 					<p>Select a category to see buildings <br>and parts you can use.</p>
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('residential')">
-					<img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles" ng-mouseover ="createToolTip($event)" ng-mouseleave = "unshowToolTip($event)">
+					<img id="menu_tile_{{i}}" class="menuTile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles" ng-mouseover ="createToolTip($event, i)" ng-mouseleave = "unshowToolTip($event)">
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('commercial')">
 					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
@@ -57,11 +59,28 @@
 				</div>
 				<div id="gameOptions">
 					<h2>OPTIONS</h2>
+					<div class="optionsButtons" ng-click="showSaveArea();">
+						Save
+					</div>
+					<div class="optionsButtons" ng-click="showLoadArea();">
+						Load
+					</div>
 				</div>
 			</div>
 			<div id="tooltipElement" class="tooltipMenu" style="display:none;">
-	
+				<h2>{{tooltip.name}}</h2>
+				{{tooltip.price}}$ ({{tooltip.income}}$)
 			</div>
-			<img id="downTooltip" class="downTooltip" src="img/downTooltip.png"/>			
+			<img id="downTooltip" class="downTooltip" src="img/downTooltip.png"/>
+			<div id="saveLoadArea" ng-show="save()">
+				<h2>Save Area</h2>
+				<p ng-bind-html="saveJSON">
+				</p>
+			</div>	
+			<div id="saveLoadArea" ng-show="load()">
+				<h2>Load Area</h2>
+				<p ng-bind-html="saveJSON">
+				</p>
+			</div>			
 	</body>
 </html>
