@@ -1,4 +1,4 @@
-gameApp.service('PriceService', function() {
+gameApp.service('PriceService', function(MoneyService) {
 	var prices = {
 			house:"1000",
 			hopital:"5000",
@@ -19,5 +19,9 @@ gameApp.service('PriceService', function() {
 
 	this.incomeOf = function (element) {
 		return incomes[element];
+	};
+
+	this.canPurchase = function (action) {
+		return MoneyService.getMoneyValue() >= this.priceOf(action);
 	};
 });

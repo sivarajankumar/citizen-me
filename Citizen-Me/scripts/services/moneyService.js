@@ -14,6 +14,10 @@ gameApp.service ('MoneyService', function () {
 		money.value += money.income;
 	};
 
+	this.getMoneyValue = function () {
+		return money.value;
+	};
+
 	this.changeIncomeValue = function (val, sign) {
 		if (sign == '+') {
 			money.income += val;

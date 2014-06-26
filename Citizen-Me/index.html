@@ -40,16 +40,24 @@
 					<p>Select a category to see buildings <br>and parts you can use.</p>
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('residential')">
-					<img id="menu_tile_{{i}}" class="menuTile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles" ng-mouseover ="createToolTip($event, i)" ng-mouseleave = "unshowToolTip($event)">
+					<div class="scrollMenuTiles">
+						<img id="menu_tile_{{i}}" class="menuTile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in residentialTiles" ng-mouseover ="createToolTip($event, i)" ng-mouseleave = "unshowToolTip($event)">
+					</div>
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('commercial')">
-					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
+					<div class="scrollMenuTiles">
+						<img id="menu_tile_{{i}}" class="menuTile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in commercialTiles" ng-mouseover ="createToolTip($event, i)" ng-mouseleave = "unshowToolTip($event)">
+					</div>
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('industrial')">
-					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
+					<div class="scrollMenuTiles">
+						<img id="menu_tile_{{i}}" class="menuTile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in industrialTiles" ng-mouseover ="createToolTip($event, i)" ng-mouseleave = "unshowToolTip($event)">
+					</div>
 				</div>
 				<div id="selectedCategory" ng-show="selectedCategory('misc')">
-					<!-- <img id="menu_tile_{{i}}" class="menu_tile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in menuTiles"> -->
+					<div class="scrollMenuTiles">
+						<img id="menu_tile_{{i}}" class="menuTile" src="img/{{i}}.jpg" ng-click="selectElementToAdd(i)" ng-repeat="i in miscTiles" ng-mouseover ="createToolTip($event, i)" ng-mouseleave = "unshowToolTip($event)">
+					</div>
 				</div>
 				<div id="gameDetails">
 					<h2>DETAILS</h2>

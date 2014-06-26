@@ -92,9 +92,11 @@ h2 {
 }
 
 .menuTile {
-	margin-left:10px;
-	margin-top:10px;
-	border:1px solid blue;
+	margin-left:6px;
+	margin-top:6px;
+	width:40px;
+	height:40px;
+	border:3px outset blue;
 	float:left;
 }
 
@@ -221,6 +223,16 @@ h2 {
 	margin:auto;
 	margin-top:10px;
 	cursor:pointer;
+}
+
+.scrollMenuTiles {
+	height:137px;
+	width:428px;
+	overflow-y:scroll;
+	border:1px outset white;
+	background:#CCC;
+	box-shadow: 0px 0px 3px black;
+	margin:10px;
 }
 
 .optionsButtons:hover {

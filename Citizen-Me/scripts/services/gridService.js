@@ -47,10 +47,14 @@ gameApp.service ('GridService', function ($http, PriceService, MoneyService) {
 			}
 		} else {
 			if (actionTile != 'bulldozer') {
-				grid[x][y]['id'] = this.getTileId (actionTile);
-				angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile' + actionTile);
-				MoneyService.changeIncomeValue (PriceService.incomeOf(actionTile), '+');
-				return 1;
+				if (PriceService.canPurchase(actionTile)) {
+					grid[x][y]['id'] = this.getTileId (actionTile);
+					angular.element(document.querySelector('#tile_' + x + '_' + y)).removeClass('tile').addClass('tile' + actionTile);
+					MoneyService.changeIncomeValue (PriceService.incomeOf(actionTile), '+');
+					return 1;
+				} else {
+					return 0;
+				}
 			}
 		}
 		return 0;

@@ -3,7 +3,12 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	// --------------- BEGIN INITIALIZATIONS --------------- //
 	
 	$scope.menuCategories = ["residential", "commercial", "industrial", "misc"];
-	$scope.menuTiles = ["house", "hopital", "police", "bulldozer"];
+
+	$scope.residentialTiles = ["house", "hopital"];
+	$scope.commercialTiles = [];
+	$scope.industrialTiles = [];
+	$scope.miscTiles = ["police", "bulldozer"];
+
 	$scope.menuSelectedCategory = "";
 	
 	$scope.money = MoneyService.updateMoney();
@@ -34,6 +39,10 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	// --------------- END INITIALIZATIONS --------------- //
 	
 	$scope.selectCategory = function (category) {
+		if ($scope.selectedTile != null) {
+			angular.element(document.querySelector("#menu_tile_" + $scope.selectedTile)).css('border', '3px outset blue');
+		}
+		this.resetCursor();
 		if (category != $scope.menuSelectedCategory) {
 			var tmpCategory = $scope.menuSelectedCategory;
 			$scope.menuSelectedCategory = category;
@@ -55,11 +64,11 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	};
 	
 	$scope.noCategorySelected = function () {
-		return this.menuSelectedCategory == "";
+		return this.menuSelectedCategory == '';
 	};
 	
 	$scope.showCoordinates = function (x, y) {
-		$scope.coordinates = x + " ; " + y;
+		$scope.coordinates = x + ' ; ' + y;
 	};
 
 	$scope.mouseDownTile = function (x, y, event) {
@@ -118,7 +127,7 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 			if (actionDone) {
 				MoneyService.changeMoneyValue(PriceService.priceOf($scope.selectedTile), '-');
 				$scope.money = MoneyService.updateMoney();
-			}
+			} 
 		} else {
 			// TO DO
 			// Display tile's popup
@@ -128,6 +137,10 @@ gameApp.controller('gameAreaCtrl', function ($scope, $http, $timeout, PriceServi
 	$scope.selectElementToAdd = function (tile) {
 		var url_cursor = "'" + "img/" + tile + ".jpg" + "'";
 		document.body.style.cursor = "url(" + url_cursor + "), auto";
+		angular.element(document.querySelector("#menu_tile_" + tile)).css('border', '3px inset blue');
+		if ($scope.selectedTile != null) {
+			angular.element(document.querySelector("#menu_tile_" + $scope.selectedTile)).css('border', '3px outset blue');
+		}
 		$scope.selectedTile = tile;
 	};
 	
